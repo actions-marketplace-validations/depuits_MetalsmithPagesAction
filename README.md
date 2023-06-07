@@ -1,1 +1,1 @@
-# NuxtPagesAction
+# MetalsmithPagesAction
