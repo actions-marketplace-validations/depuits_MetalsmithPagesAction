@@ -1,8 +1,8 @@
-name: 'Nuxt3 to Github Pages'
+name: 'Metalsmith to Github Pages'
 branding:
   icon: 'activity'  
   color: 'blue'
-description: 'This Action will Build your Nuxt Project and deploy it to Github Pages'
+description: 'This Action will Build your Metalsmith Project and deploy it to Github Pages'
 inputs:
   username:
     description: 'Your username'
@@ -36,11 +36,11 @@ inputs:
 runs:
   using: "composite"
   steps:
-      - name: Build Nuxt
+      - name: Build Metalsmith
         run: |
               if [ true ==  ${{ inputs.useyarn }} ]; then yarn install --frozen-lockfile; else npm ci; fi
-              if [ true ==  ${{ inputs.useyarn }} ]; then yarn generate; else npm run generate; fi
-              cd dist
+              if [ true ==  ${{ inputs.useyarn }} ]; then yarn generate; else npm run build; fi
+              cd build
               if [ "none" !=  ${{ inputs.cname }} ]; then echo '${{ inputs.cname }}' > CNAME; fi
               git config --global user.email "${{ inputs.gitemail }}"
               git config --global user.name "${{ inputs.gitname }}"
